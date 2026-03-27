@@ -15,10 +15,12 @@ This repository now contains a runnable end-to-end platform baseline across all 
 - **Phase 2 (Editor infrastructure core)**
   - Schema-to-settings form mapping (`src/cms/schema-to-form.js`)
   - Core block registration and settings field generation (`src/cms/platform.js`)
+  - Next.js dashboard and page editor scaffolding (`app/(admin)/...`, `src/editor-ui/EditorShell.tsx`)
 
 - **Phase 3 (Publishing + rendering)**
   - Page lifecycle service with drafts, versions, publish, restore (`src/cms/page-service.js`)
   - Recursive published renderer (`src/cms/renderer.js`)
+  - Public slug rendering route (`app/(public)/[slug]/page.tsx`)
 
 - **Phase 4 (Platform features baseline)**
   - Media library (`src/cms/media-library.js`)
@@ -32,9 +34,17 @@ This repository now contains a runnable end-to-end platform baseline across all 
 npm test
 ```
 
-## End-to-end validation
+## Run app (after dependencies are installed)
 
-`test/platform-e2e.test.js` exercises authoring, saving drafts, media upload, theme updates, publishing, and rendering.
+```bash
+npm install
+npm run dev
+```
+
+Open:
+
+- `http://localhost:3000/dashboard` for admin
+- `http://localhost:3000/home` for published page
 
 ## Architecture plan
 

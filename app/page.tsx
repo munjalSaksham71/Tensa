@@ -10,7 +10,7 @@ export default function HomePage() {
       <ul>
         <li>
           <Link className="simple-link" href="/dashboard">
-            Open Admin Dashboard
+            Open Dashboard
           </Link>
         </li>
         <li>

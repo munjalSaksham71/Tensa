@@ -18,6 +18,14 @@ type EditorShellProps = {
   initialBlocks: BlockNode[];
 };
 
+
+type SettingsField = {
+  name: string;
+  label: string;
+  control: 'select' | 'number' | 'text';
+  options?: Array<string | number>;
+};
+
 const adminUser = { id: 'demo-admin', role: 'admin' };
 
 function previewText(block: BlockNode) {
@@ -55,7 +63,7 @@ export function EditorShell({ pageId, pageTitle, initialBlocks }: EditorShellPro
 
   const selectedIndex = state.blocks.findIndex((block) => block.id === state.selectedBlockId);
   const selectedBlock = selectedIndex >= 0 ? state.blocks[selectedIndex] : null;
-  const selectedFields = selectedBlock ? platform.getSettingsFields(selectedBlock.type) : [];
+  const selectedFields = (selectedBlock ? platform.getSettingsFields(selectedBlock.type) : []) as SettingsField[];
 
   const onAddBlock = (blockType: string) => {
     const definition = platform.registry.get(blockType);
@@ -175,7 +183,7 @@ export function EditorShell({ pageId, pageTitle, initialBlocks }: EditorShellPro
                         setSaveStatus('Unsaved changes');
                       }}
                     >
-                      {field.options.map((option) => (
+                      {(field.options ?? []).map((option: string | number) => (
                         <option key={String(option)} value={String(option)}>
                           {String(option)}
                         </option>

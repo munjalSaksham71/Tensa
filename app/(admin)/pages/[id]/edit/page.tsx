@@ -3,9 +3,10 @@ import { notFound } from 'next/navigation';
 import { EditorShell } from '@/src/editor-ui/EditorShell';
 import { ensureSeedPage, platform } from '@/src/web/platform-instance.js';
 
-export default function EditPage({ params }: { params: { id: string } }) {
+export default async function EditPage({ params }: { params: Promise<{ id: string }> }) {
   ensureSeedPage();
-  const page = platform.pageService.getPageById(params.id);
+  const { id } = await params;
+  const page = platform.pageService.getPageById(id);
   if (!page) return notFound();
 
   return (

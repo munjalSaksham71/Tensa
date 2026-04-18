@@ -1,10 +1,11 @@
 import { notFound } from 'next/navigation';
 import { ensureSeedPage, platform } from '@/src/web/platform-instance.js';
 
-export default function PublicPage({ params }: { params: { slug: string } }) {
+export default async function PublicPage({ params }: { params: Promise<{ slug: string }> }) {
   ensureSeedPage();
+  const { slug } = await params;
 
-  const page = platform.pageService.getPageBySlug(params.slug, 'published');
+  const page = platform.pageService.getPageBySlug(slug, 'published');
   if (!page) return notFound();
 
   const bodyHtml = platform.renderer.renderBlocks(page.blocks);

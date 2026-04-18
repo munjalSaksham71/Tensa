@@ -9,7 +9,7 @@ import { PluginSystem } from './plugin-system.js';
 import { schemaToFields } from './schema-to-form.js';
 
 function paragraphRender(props) {
-  return `<p>${props.text ?? ''}</p>`;
+  return `<p class="tensa-paragraph">${props.text ?? ''}</p>`;
 }
 
 function headingRender(props) {
@@ -20,15 +20,15 @@ function headingRender(props) {
 
 function imageRender(props) {
   const alt = props.alt ?? '';
-  return `<img src="${props.src ?? ''}" alt="${alt}" />`;
+  return `<figure class="tensa-image-wrap"><img class="tensa-image" src="${props.src ?? ''}" alt="${alt}" /></figure>`;
 }
 
 function sectionRender(props) {
-  return `<section><div class="section-inner">${props.childrenHtml ?? ''}</div></section>`;
+  return `<section class="tensa-section"><div class="section-inner">${props.childrenHtml ?? ''}</div></section>`;
 }
 
 function buttonRender(props) {
-  return `<a href="${props.href ?? '#'}" class="btn">${props.label ?? 'Button'}</a>`;
+  return `<a href="${props.href ?? '#'}" class="btn tensa-btn">${props.label ?? 'Button'}</a>`;
 }
 
 export class TensaPlatform {

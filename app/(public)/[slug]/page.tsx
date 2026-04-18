@@ -11,9 +11,12 @@ export default async function PublicPage({ params }: { params: Promise<{ slug: s
   const bodyHtml = platform.renderer.renderBlocks(page.blocks);
 
   return (
-    <div className="page-wrap">
-      <h1>{page.title}</h1>
-      <div className="rendered-page" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
+    <div className="page-wrap public-wrap">
+      <header className="public-header">
+        <p className="muted">Published page</p>
+        <h1>{page.title}</h1>
+      </header>
+      <div className="rendered-page public-rendered" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
     </div>
   );
 }
